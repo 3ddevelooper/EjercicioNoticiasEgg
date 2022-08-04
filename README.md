@@ -9,7 +9,7 @@ Modelo de proyecto Full-Stack de creación y devolución de noticias
 -Java 8<br>
 -Spring Boot v2.5.7<br>
 -Thymeleaf<br>
--Maven v3.8.4
+-Maven v3.8.4<br>
 -JPA/Hibernate<br>
 -Spring Security<br>
 -Project Lombok<br>
