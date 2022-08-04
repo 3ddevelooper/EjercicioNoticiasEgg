@@ -5,7 +5,7 @@
 </div>
 
 Modelo de proyecto Full-Stack de creación y devolución de noticias
-<h1>Tencologías usudas</h1>
+<h1>Tencologías empleadas:</h1>
 -Java 8<br>
 -Spring Boot v2.5.7<br>
 -Thymeleaf<br>
