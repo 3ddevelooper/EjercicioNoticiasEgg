@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: navbar"></header>
+
+	<div class="container h-100">
+
+
+		<div class="row justify-content-center mt-4">
+			<div class="col-md-6 col-md-offset-3">
+				<h1 class="text-center text-warning">Nueva Publicacion</h1>
+				<div th:if=${param.errorTitulo}>
+					<div class="alert alert-danger">El titulo de la noticia debe
+						tener mínimo 10 caracteres</div>
+				</div>
+
+				<div th:if=${param.errorCuerpo}>
+					<div class="alert alert-danger">El cuerpo de la noticia debe
+						tener minimo 100 caracteres</div>
+				</div>
+				<form th:action="@{/admin/guardar-noticia}" method="post"
+					enctype="multipart/form-data" th:object="${noticia}">
+					<div class="form-group">
+						<!--  <input type="hidden" th:field="*{id}">-->
+						<label class="control-label fw-bold" for="titulo">Titulo :
+						</label> <input th:field="*{titulo}" type="text" class="form-control mt-1"
+							minlength="10" required autofocus="autofocus"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></small>
+
+					</div>
+
+					<div class="form-group  mt-2">
+						<label class="control-label fw-bold" for="cuerpo">Cuerpo :
+						</label>
+						<textarea th:field="*{cuerpo}" class="form-control mt-1" rows="10"
+							cols="50" minlength="100" required autofocus="autofocus"></textarea>
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('cuerpo')}" th:errors="*{cuerpo}"></small>
+					</div>
+
+					<div class="form-group mt-2" id="inputImg">
+						<label class="control-label fw-bold" for="imagen">Imagen :
+						</label>
+						<input id="imagen" type="file" name="file" class="form-control"
+							accept="image/png, image/jpg, image/gif, image/jpeg" required
+							autofocus="autofocus">
+					</div>
+
+
+					<div class="form-group mt-4">
+						<button type="submit" class="btn btn-dark">Guardar</button>
+						<!--<span>Si estas registrado <a class="text-warning fw-bold" th:href="@{/login}">Inicia sesión aqui</a></span>-->
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="layout/layout :: js"></script>
+
+</body>
+
+</html>

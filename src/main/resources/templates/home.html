@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+
+</head>
+
+<body>
+
+	<header th:replace="layout/layout :: navbar"></header>
+	
+	<div class="container-fluid h-100">
+		<h1 class="pt-4 text-warning text-center">Bienvenidos al portal de noticas de EGG Coperation</h1>
+		<div class="mt-4 container">
+			<h4 class="m-0 text-warning text-decoration-underline">Ultimas Noticias</h4>
+		</div>
+		<div class="pt-4 container ">
+			<div class="card">
+				<div class="row">
+					<div class="col-12 col-md-4 mb-4" th:each="noticia : ${noticias}">
+						<div class="card bg-black">
+							<!--<img th:src="@{'/Imagenes/' + ${noticia.imagen}}" class="card-img-top rounded-3 imagenstyle"
+								alt="Imagen HTML">-->
+							<img th:src="@{'data:image/jpeg;base64,'+${noticia.imagen}}" class="card-img-top rounded-3 imagenstyle"
+								alt="Imagen HTML">	
+								
+							<div class="card-body">
+								<h3 class="card-title text-white text-capitalize fs-2" th:text="${noticia.titulo}"></h3>
+								<p class="card-text text-white m-0">Autor : <small class="text-muted fst-italic  text-capitalize"
+										th:text="${noticia.autor}"></small></p>
+								<p class="card-text text-white">
+									Publicada el : <small class="text-muted fst-italic"
+										th:text="${noticia.fechaPublicacion}"></small>
+								</p>
+								<div class="text-end">
+									<a sec:authorize="isAuthenticated()" class="text-decoration-none text-warning fw-bolder" 
+									th:href="@{/admin/completa/} + ${noticia.id}">Leer Más</a>
+									<a sec:authorize="!isAuthenticated()" class="text-decoration-none text-warning fw-bolder" 
+									th:href="@{/home/lectura/} + ${noticia.id}">Leer Más</a>
+									
+								</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="layout/layout :: js"></script>
+
+
+</body>
+
+</html>

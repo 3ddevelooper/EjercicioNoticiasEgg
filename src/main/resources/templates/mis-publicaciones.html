@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+
+</head>
+
+<body>
+
+	<header th:replace="layout/layout :: navbar"></header>
+	
+	<div class="container-fluid vh-100">
+		<h1 class="pt-4 text-warning text-center">Mis Publicaciones</h1>
+		<div class="container mt-5">
+			<div class="table-responsive-lg">
+				<table class="bg-warning table-bordered table-hover tabla">
+					<thead>
+						<tr  class="text-center text-dark">
+							<th scope="col">ID</th>
+							<th scope="col">TÍTULO</th>
+							<th scope="col">FECHA DE PUBLICACIÓN</th>
+							<th scope="col" colspan="2">ACCIÓN</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="noticia:${noticias}">
+							<td th:text="${noticia.id}"></td>
+							<td th:text="${noticia.titulo}"></td>
+							<td th:text="${noticia.fechaPublicacion}"></td>
+							<td class="text-center">
+							    <a class="btn btn-outline-warning btn-sm"
+									th:href="@{/admin/editar/} + ${noticia.id}">
+									<i class="icon ion-md-create"></i>
+								</a>
+							</td>
+							<td class="text-center">
+							    <button class="btn btn-outline-danger btn-sm"
+									th:onclick="eliminar([[${noticia.id}]])">
+									<i class="icon ion-md-trash"></i> 
+								</button>
+							</td>
+						</tr>
+						
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	
+	</div>
+	<br>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="layout/layout :: js"></script>
+
+
+</body>
+
+</html>

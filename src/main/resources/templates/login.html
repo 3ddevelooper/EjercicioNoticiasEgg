@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<header th:replace="layout/layout :: navbar"></header>
+
+
+	<div class="container vh-100">
+		<div class="row  justify-content-center mt-4">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Inicio de sesión</h1>
+				<form th:action="@{/login}" method="post">
+
+					<div th:if=${param.error}>
+						<div class="alert alert-danger">Usuario o contraseña
+							inválidos</div>
+					</div>
+
+					<div th:if=${param.logout}>
+						<div class="alert alert-success">Ha cerrado sesión exitosamente
+						</div>
+					</div>
+
+
+					<div class="form-group mt-2">
+						<label class="control-label fw-bold" for="username">Nombre de usuario : </label>
+						<input id="username" name="username" type="text" class="form-control" required
+							autofocus="autofocus" placeholder="Digite su email ID">
+					</div>
+
+					<div class="form-group mt-2">
+						<label class="control-label fw-bold" for="password">Password : </label>
+						<input id="password" type="password" name="password" class="form-control" required
+							autofocus="autofocus" placeholder="Digite su password">
+					</div>
+					<div class="form-group mt-2">
+						<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+						<span>Si eres nuevo usuario <a class="text-warning fw-bold" th:href="@{/registro}">regístrate
+								aqui</a></span>
+					</div>
+				</form>
+			
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+    <script th:replace="layout/layout :: js"></script>
+    
+</body>
+
+</html>
